@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block head_js %}
+<script src="https://rawgit.com/RubaXa/Sortable/master/Sortable.js"></script>
+{% endblock head_js %}
+
+{% block content %}
+<ul class="list-group sortable">
+  <li class="list-group-item">This is <a href="http://rubaxa.github.io/Sortable/">Sortable</a></li>
+  <li class="list-group-item">It works with Bootstrap...</li>
+  <li class="list-group-item">...out of the box.</li>
+  <li class="list-group-item">It has support for touch devices.</li>
+  <li class="list-group-item">Just drag some elements around.</li>
+</ul>
+    <script type="text/javascript">
+        new Sortable(document.getElementsByClassName('sortable')[0]);
+    </script>
+{% endblock content %}

@@ -1,0 +1,89 @@
+<html>
+  <head>
+    {% if title %}
+    <title>{{ title }} - GURU</title>
+    {% else %}
+    <title>GURU</title>
+    {% endif %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/css/gurustyle.css" rel="stylesheet" media="screen">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/static/css/bootstrap-theme.css" rel="stylesheet" media="screen">
+    {% block head_js %}{% endblock head_js %}
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </button>
+	  <a class="navbar-brand" href="/">GURU</a>
+	</div>
+
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	  <ul class="nav navbar-nav">
+	    <li class="dropdown">
+	      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Applications <span class="caret"></span></a>
+	      <ul class="dropdown-menu" role="menu">
+		<li><a href="/app/kmeans">Cluster Analysis</a></li>
+		<li class="divider"></li>
+		<li><a href="/app/svmwsgd">Binary Classification</a></li>
+		<li class="divider"></li>
+		<li><a href="/app/recommend">Recommender</a></li>
+		<li class="divider"></li>
+		<li><a href="/app/simpleplot">SimplePlot</a></li>
+	      </ul>
+	    </li>
+	    <li class="dropdown">
+	      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Modules <span class="caret"></span></a>
+	      <ul class="dropdown-menu" role="menu">
+		<li><a href="/app/kmeans">BinaryClassifier</a></li>
+		<li class="divider"></li>
+		<li><a href="/mod/catn">CatN</a></li>
+		<li class="divider"></li>
+		<li><a href="/app/kmeans">ClusterAnalysis</a></li>
+		<li class="divider"></li>
+		<li><a href="/app/kmeans">FileReader</a></li>
+		<li class="divider"></li>
+		<li><a href="/app/kmeans">RandomData</a></li>
+		<li class="divider"></li>
+		<li><a href="/app/kmeans">SummaryStats</a></li>
+	      </ul>
+	    </li>
+	    <li class="dropdown">
+	      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tools <span class="caret"></span></a>
+	      <ul class="dropdown-menu" role="menu">
+		<li><a href="/app/svmwsgd">Contexts</a></li>
+		<li class="divider"></li>
+		<li><a href="/app/kmeans">Jobs</a></li>
+	      </ul>
+	    </li>
+	  </ul>
+	</div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li>{{ message }} </li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    </div>
+    {% block content %}{% endblock %}
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/static/js/bootstrap.min.js"></script>
+  </body>
+</html>

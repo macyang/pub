@@ -1,0 +1,53 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="jumbotron">
+<div class="container">
+  <br>
+  <h2>SimplePlot</h2>
+  <p>
+  This example shows how to dynamically generate data visualization.
+  It first calls the CatN module to fetch n number of records from the named RDD.
+  And then it renders the data and embed the image in the resulting page.
+  SimplePlot only work with collection of 2-D points.
+  <br><br>
+  </p>
+  <form class="form-horizontal" action="" method="post" name="kmenas">
+      {{ form.hidden_tag() }}
+    <div class="form-group">
+        <label for="input0" class="control-label col-xs-2">Named RDD</label>
+        <div class="col-xs-6">
+	    {{ form.input0(class_="form-control", id="input0") }}
+        </div>
+        <div class="col-xs-8">
+          {% for error in form.input0.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="n" class="control-label col-xs-2">Number of Records</label>
+        <div class="col-xs-2">
+	    {{ form.n(class_="form-control", id="n") }}
+        </div>
+        <div class="col-xs-8">
+          {% for error in form.n.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-offset-2 col-xs-10">
+            <button type="submit" class="btn btn-primary">Go!</button>
+        </div>
+    </div>
+  </form>
+</div>
+{% if resp is defined %}
+<div class="container"> 
+<img src="{{ url_for('build_plot', jobid = resp) }}">
+</div>
+{% endif %}
+</div>
+{% endblock %}
