@@ -14,9 +14,7 @@ def build_plot():
   jobId = request.args.get('jobid')
   r = requests.get(jobAPI + '/' + jobId)
   resp = json.loads(r.text)
-
-  print "XXX plots: ", r.text
-
+  # print "XXX plots: ", r.text
   data_list = resp['result']['data']
   xlist = []
   ylist = []
@@ -25,9 +23,8 @@ def build_plot():
     xlist.append(d[0])
     ylist.append(d[1])
 
-  print "XXX xlist: ", xlist
-  print "XXX ylist: ", ylist
-
+  # print "XXX xlist: ", xlist
+  # print "XXX ylist: ", ylist
   # Generate the plot
   line, = plt.plot(xlist, ylist, marker='o', color='r', ls='')
 

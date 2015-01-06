@@ -5,11 +5,21 @@ import time
 contextAPI = 'http://localhost:8090/contexts'
 jobAPI = 'http://localhost:8090/jobs'
 
+def getContexts():
+  r = requests.get(contextAPI)
+  resp = json.loads(r.text)
+  return resp
+
+def getJobs():
+  r = requests.get(jobAPI)
+  resp = json.loads(r.text)
+  return resp
+
 def runCatN(input0, n):
   conf = "CatN{"
   conf += "input0=\"tap:nrdd0\","
   conf += "n=" + str(n.data) + "}"
-  print "XXX CatN config: ", conf
+  # print "XXX CatN config: ", conf
   job = jobAPI + '?appName=tap&classPath=tap.engine.CatN&context=tap-context'
   r = requests.post(job, data = conf)
   resp = json.loads(r.text)

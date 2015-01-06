@@ -6,6 +6,10 @@ class SimplePlotForm(Form):
     input0 = StringField('input0', validators=[DataRequired()])
     n = IntegerField('n', validators=[NumberRange(min=1, max=250)])
 
+class CatNForm(Form):
+    input0 = StringField('input0', validators=[DataRequired()])
+    n = IntegerField('n', validators=[NumberRange(min=1, max=250)])
+
 class KmeansForm(Form):
     inputFile = StringField('inputFile', validators=[DataRequired()])
     numClusters = IntegerField('numClusters', validators=[NumberRange(min=2, max=10)])

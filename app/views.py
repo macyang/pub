@@ -1,15 +1,16 @@
 from flask import render_template, flash, redirect
 from app import app
-from .forms import KmeansForm, SimplePlotForm
-from .guru import runKmeans, runCatN
+from .forms import KmeansForm, SimplePlotForm, CatNForm
+from .guru import runKmeans, runCatN, getContexts, getJobs
 import json
+import requests
 
 @app.route('/')
 @app.route('/index')
 def index():
     user = {'nickname': 'guru'}
     return render_template('index.html',
-                           title='Home',
+                           title='GURU',
                            user=user)
 
 @app.route('/app/kmeans', methods=['GET', 'POST'])
@@ -39,6 +40,20 @@ def simpleplot():
     return render_template('simpleplot.html', 
                            title='Simple Plot',
                            form=form)
+
+@app.route('/sys/contexts', methods=['GET'])
+def contexts():
+    resp = getContexts()
+    return render_template('contexts.html', 
+                           title='Context List',
+                           data=resp)
+
+@app.route('/sys/jobs', methods=['GET'])
+def jobs():
+    resp = getJobs()
+    return render_template('jobs.html', 
+                           title='Context List',
+                           data=resp)
 
 @app.route('/build', methods=['GET', 'POST'])
 def build():
